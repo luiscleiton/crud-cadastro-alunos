@@ -1,0 +1,548 @@
+
+/* ==========================================
+   VARIÁVEIS
+========================================== */
+
+:root {
+    color-scheme: light;
+
+    --bg: #f5f6f8;
+    --card: #ffffff;
+    --borda: #e5e7eb;
+
+    --texto: #374151;
+    --texto-suave: #6b7280;
+    --titulo: #111827;
+
+    --primaria: #475569;
+    --primaria-escura: #334155;
+    --primaria-clara: #f1f5f9;
+
+    --sucesso: #16a34a;
+    --sucesso-claro: #f0fdf4;
+
+    --perigo: #dc2626;
+    --perigo-claro: #fef2f2;
+
+    --alerta: #d97706;
+    --alerta-claro: #fffbeb;
+
+    --cabecalho-tabela: #f9fafb;
+    --campo-bg: #ffffff;
+    --linha-par: #fafafa;
+
+    --raio: 10px;
+
+    --sombra: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+
+/* ==========================================
+   RESET E BASE
+========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 32px 16px;
+
+    background: var(--bg);
+    color: var(--texto);
+
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+h1,
+h2 {
+    margin: 0;
+    color: var(--titulo);
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 21px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 17px;
+}
+
+
+/* ==========================================
+   CARDS
+========================================== */
+
+.card {
+    background: var(--card);
+
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+
+    box-shadow: var(--sombra);
+
+    overflow: hidden;
+}
+
+.card-corpo {
+    padding: 24px 28px;
+}
+
+.card-topo {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    padding-bottom: 16px;
+}
+
+.card-rodape {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    padding: 16px 28px;
+
+    background: #fafafa;
+    border-top: 1px solid var(--borda);
+}
+
+
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
+fieldset {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px 24px;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo-largo {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+
+    color: #4b5563;
+}
+
+.req {
+    color: var(--perigo);
+}
+
+
+/* ==========================================
+   INPUTS
+========================================== */
+
+input[type='text'],
+input[type='email'],
+input[type='search'] {
+    width: 100%;
+    height: 40px;
+
+    padding: 0 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+
+    background: var(--campo-bg);
+    color: var(--texto);
+
+    font: inherit;
+
+    transition:
+        border-color 0.15s,
+        box-shadow 0.15s,
+        background 0.15s;
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+input:focus {
+    outline: none;
+
+    border-color: #64748b;
+
+    box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.12);
+}
+
+input:disabled {
+    background: #f3f4f6;
+    cursor: not-allowed;
+}
+
+
+/* ==========================================
+   BOTÕES
+========================================== */
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.btn {
+    height: 40px;
+    padding: 0 20px;
+
+    border-radius: 7px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.15s,
+        transform 0.05s,
+        border-color 0.15s;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-primario {
+    border: 1px solid #374151;
+
+    background: #374151;
+    color: #ffffff;
+}
+
+.btn-primario:hover:not(:disabled) {
+    background: #1f2937;
+    border-color: #1f2937;
+}
+
+.btn-secundario {
+    border: 1px solid #d1d5db;
+
+    background: #ffffff;
+    color: #374151;
+}
+
+.btn-secundario:hover {
+    border-color: #9ca3af;
+    background: #f9fafb;
+}
+
+
+/* ==========================================
+   BUSCA
+========================================== */
+
+.busca {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    width: 280px;
+    max-width: 100%;
+}
+
+
+/* ==========================================
+   TABELA
+========================================== */
+
+.tabela-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    padding: 12px 16px;
+
+    background: var(--cabecalho-tabela);
+    color: #6b7280;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 0.05em;
+    text-align: left;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    border-bottom: 1px solid var(--borda);
+}
+
+tbody td {
+    padding: 14px 16px;
+
+    border-bottom: 1px solid #edf0f2;
+
+    vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+    background: var(--linha-par);
+}
+
+tbody tr:hover {
+    background: #f3f4f6;
+}
+
+tbody td:first-child {
+    color: var(--titulo);
+    font-weight: 600;
+}
+
+.col-acoes {
+    text-align: right;
+}
+
+tbody td:last-child {
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   INFORMAÇÕES DO ALUNO
+========================================== */
+
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    min-width: 180px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eef2f7;
+    color: #475569;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.student-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.student-details strong {
+    color: var(--titulo);
+    font-size: 13px;
+}
+
+.student-details small {
+    color: var(--texto-suave);
+    font-size: 11px;
+    font-weight: 400;
+}
+
+
+/* ==========================================
+   AÇÕES DA TABELA
+========================================== */
+
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.btn-edit,
+.btn-delete {
+    height: 32px;
+    padding: 0 12px;
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: background 0.15s;
+}
+
+.btn-edit {
+    border: 1px solid #d1d5db;
+    color: #475569;
+}
+
+.btn-edit:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.btn-delete {
+    border: 1px solid #fecaca;
+    color: var(--perigo);
+}
+
+.btn-delete:hover {
+    background: var(--perigo-claro);
+}
+
+
+/* ==========================================
+   MENSAGENS
+========================================== */
+
+.mensagem-vazia {
+    padding: 30px 16px;
+    text-align: center;
+    color: var(--texto-suave);
+}
+
+.mensagem-erro {
+    padding: 16px;
+    color: var(--perigo);
+    background: var(--perigo-claro);
+    text-align: center;
+}
+
+
+/* ==========================================
+   VALIDAÇÕES
+========================================== */
+
+.erro,
+.mensagem-erro {
+    color: var(--perigo);
+    font-size: 12px;
+}
+
+.sucesso,
+.mensagem-sucesso {
+    color: var(--sucesso);
+    font-size: 12px;
+}
+
+.alerta,
+.mensagem-alerta {
+    color: var(--alerta);
+    font-size: 12px;
+}
+
+.campo-invalido input {
+    border-color: var(--perigo);
+}
+
+.campo-invalido input:focus {
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+.campo-valido input {
+    border-color: var(--sucesso);
+}
+
+.campo-valido input:focus {
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+@media (max-width: 800px) {
+
+    fieldset {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .tabela-wrapper {
+        overflow-x: auto;
+    }
+
+}
+
+@media (max-width: 520px) {
+
+    body {
+        padding: 20px 12px;
+    }
+
+    fieldset {
+        grid-template-columns: 1fr;
+    }
+
+    .card-corpo,
+    .card-rodape {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .card-rodape {
+        flex-direction: column-reverse;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .card-topo {
+        align-items: stretch;
+    }
+
+    .busca {
+        width: 100%;
+    }
+
+    .table-actions {
+        flex-direction: column;
+    }
+
+}
