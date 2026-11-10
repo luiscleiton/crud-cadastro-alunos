@@ -1,103 +1,234 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Cadastro de Alunos</title>
+
+    <title>CRUD - Cadastro de Alunos</title>
+
     <link rel="stylesheet" href="style.css">
-    <script src="crud.js"></script>
-    <script src="script.js"></script>
+
+    <script src="crud.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
+
 <body>
-  <main class="container">
 
-    <section class="card">
-      <form id="form-cadastro" novalidate>
-        <input type="hidden" id="aluno-id" name="id">
+    <main class="container">
 
-        <div class="card-corpo">
-          <h1 id="titulo-form">Cadastrar Aluno</h1>
+        <!-- CADASTRO DE ALUNOS -->
+        <section class="card">
 
-          <fieldset>
-            <div class="campo campo-largo">
-              <label for="nome">Nome completo <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="nome" name="nome" placeholder="Como o aluno se chama?" required>
+            <form id="form-cadastro" novalidate>
+
+                <input type="hidden" id="aluno-id" name="id">
+
+                <div class="card-corpo">
+
+                    <h1 id="titulo-form">Cadastrar Aluno</h1>
+
+                    <fieldset>
+
+                        <div class="campo campo-largo">
+                            <label for="nome">
+                                Nome completo <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nome"
+                                name="nome"
+                                placeholder="Como o aluno se chama?"
+                                required
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="email">
+                                E-mail <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="nome@exemplo.com"
+                                required
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="celular">
+                                Celular <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="celular"
+                                name="celular"
+                                placeholder="(00) 00000-0000"
+                                maxlength="15"
+                                required
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="cep">
+                                CEP <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cep"
+                                name="cep"
+                                placeholder="00000-000"
+                                maxlength="9"
+                                required
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="logradouro">
+                                Logradouro
+                            </label>
+
+                            <input
+                                type="text"
+                                id="logradouro"
+                                name="logradouro"
+                                placeholder="Rua, avenida..."
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="bairro">
+                                Bairro
+                            </label>
+
+                            <input
+                                type="text"
+                                id="bairro"
+                                name="bairro"
+                                placeholder="Informe o bairro"
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="cidade">
+                                Cidade <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cidade"
+                                name="cidade"
+                                placeholder="Informe a cidade"
+                                required
+                            >
+                        </div>
+
+                        <div class="campo">
+                            <label for="estado">
+                                Estado <span class="req">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="estado"
+                                name="estado"
+                                placeholder="UF"
+                                maxlength="2"
+                                required
+                            >
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <div class="card-rodape">
+
+                    <button
+                        id="btn-limpar"
+                        type="reset"
+                        class="btn btn-secundario"
+                    >
+                        Limpar campos
+                    </button>
+
+                    <button
+                        id="btn-cadastrar"
+                        type="submit"
+                        class="btn btn-primario"
+                    >
+                        Cadastrar
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <!-- LISTAGEM DE ALUNOS -->
+        <section class="card">
+
+            <div class="card-corpo card-topo">
+
+                <h2>Alunos cadastrados</h2>
+
+                <div class="busca">
+
+                    <label for="busca">
+                        Buscar aluno
+                    </label>
+
+                    <input
+                        type="search"
+                        id="busca"
+                        placeholder="Buscar por nome ou e-mail"
+                        autocomplete="off"
+                    >
+
+                </div>
+
             </div>
 
-            <div class="campo">
-              <label for="email">E-mail <span class="req" aria-hidden="true">*</span></label>
-              <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
+            <div class="tabela-wrapper">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Celular</th>
+                            <th>E-mail</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>CEP</th>
+                            <th class="col-acoes">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="alunosTableBody">
+
+                        <tr>
+                            <td colspan="7">
+                                Carregando alunos...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
             </div>
 
-            <div class="campo">
-              <label for="celular">Celular <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="celular" name="celular" placeholder="(00) 00000-0000" required>
-            </div>
+        </section>
 
-            <div class="campo">
-              <label for="cep">CEP <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="cep" name="cep" placeholder="00000-000" required>
-            </div>
+    </main>
 
-            <div class="campo">
-              <label for="logradouro">Logradouro</label>
-              <input type="text" id="logradouro" name="logradouro" placeholder="Rua, avenida...">
-            </div>
-
-            <div class="campo">
-              <label for="bairro">Bairro</label>
-              <input type="text" id="bairro" name="bairro" placeholder="Informe o bairro">
-            </div>
-
-            <div class="campo">
-              <label for="cidade">Cidade <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="cidade" name="cidade" placeholder="Informe a cidade" required>
-            </div>
-
-            <div class="campo">
-              <label for="estado">Estado <span class="req" aria-hidden="true">*</span></label>
-              <input type="text" id="estado" name="estado" placeholder="UF" maxlength="2" required>
-            </div>
-          </fieldset>
-        </div>
-
-        <div class="card-rodape">
-          <button id="btn-limpar" type="reset" class="btn btn-secundario">Limpar campos</button>
-          <button id="btn-cadastrar" type="submit" class="btn btn-primario">Cadastrar</button>
-        </div>
-      </form>
-    </section>
-
-    <section class="card">
-      <div class="card-corpo card-topo">
-        <h2>Alunos cadastrados</h2>
-
-        <div class="busca">
-          <label for="busca">Buscar aluno</label>
-          <input type="search" id="busca" placeholder="Buscar por nome ou e-mail" autocomplete="off">
-        </div>
-      </div>
-
-      <div class="tabela-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Celular</th>
-              <th>E-mail</th>
-              <th>Cidade</th>
-              <th>Estado</th>
-              <th>CEP</th>
-              <th class="col-acoes">Ações</th>
-            </tr>
-          </thead>
-          <tbody id="alunosTableBody">
-            <!-- Os dados dos alunos serão inseridos aqui -->
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-  </main>
 </body>
 </html>
